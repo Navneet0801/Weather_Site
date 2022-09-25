@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather_Site</title>
+</head>
+<body>
+    <div class="weather-app">
+        <div class="container">
+            <h3 class="brand">The Weather</h3>
+            <div>
+                <h1 class="temp">16&#176;</h1>
+                <div class="city-time">
+                    <h1 class="name">London</h1>
+                    <small>
+                        <span class="time">06:09</span>
+                        - 
+                        <span class="date">
+                            Sunday Sep 25
+                        </span>
+                    </small>
+                </div>
+                <div class="weather">
+                    <img 
+                        src="./icons/day/113.png" 
+                        class="icon"
+                        alt="icon"
+                        width="50"
+                        height="50"
+                    />
+                    <span class="condition">Cloudy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pane1">
+            <form action="" id="locationInput">
+                <input 
+                    class="search" 
+                    type="text" 
+                    name="" 
+                    placeholder="Search Location..."
+                >
+                <button type="submit" class="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+
+            <ul class="cities">
+                <li class="city">Kolkata</li>
+                <li class="city">Mumbai</li>
+                <li class="city">Delhi</li>
+                <li class="city">Chennai</li>
+            </ul>
+
+            <ul class="details">
+                <h4>Weather Details</h4>
+                <li>
+                    <span>Cloudy</span>
+                    <span class="cloud">89%</span>
+                </li>
+                <li>
+                    <span>Humidity</span>
+                    <span class="humidity">64%</span>
+                </li>
+                <li>
+                    <span>wind</span>
+                    <span class="wind">8Km/h</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
