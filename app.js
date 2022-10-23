@@ -11,7 +11,7 @@ const windOutput = document.querySelector('.wind');
 const form = document.getElementById('locationInput');
 const search = document.querySelector('.search');
 const btn = document.querySelector('.submit');
-const cities = document.querySelector('.city');
+const cities = document.querySelectorAll('.city');
 
 //Default city when the page loads
 let cityInput = "Delhi";
@@ -31,12 +31,12 @@ cities.forEach((city) => {
 
 form.addEventListener('submit', (e) => {
     //if search bar remains empty then give alert
-    if(search.ariaValueMax.length == 0){
+    if(search.value.length == 0){
         alert('Please type a city name!!');
     }
     else{
         //change name from the default city to the searched city
-        cityInput = search.ariaValueMax;
+        cityInput = search.value;
         //Function call to fetch data of the giver city
         fetchWeatherData();
         //Remove the text from input field
@@ -44,12 +44,12 @@ form.addEventListener('submit', (e) => {
         //fade out the app (simple animation)
         app.style.opacity = "0";
     };
-    //Prevents the default behavior of the formmmmmmmmmmmmmmmmmmmmmmm
+    //Prevents the default behavior of the form
     e.preventDefault();
 });
 
 function dayOfTheWeek(day, month, year){
-    const weekdays = [
+    const weekday = [
         "Sunday",
         "Monday",
         "Tuesday",
@@ -58,7 +58,8 @@ function dayOfTheWeek(day, month, year){
         "Friday",
         "Saturday"
     ];
-    return weekday[new DataTransfer(`${day}/${month}/${year}`).getDay()];
+    const datee = new Date(`${month} ${day}, ${year}`);
+    return weekday[datee.getDay()];
 };
 
 //functin of fecthing the data from api
@@ -73,7 +74,7 @@ function fetchWeatherData(){
         console.log(data);
 
         //now add temperature and weather condition to the page
-        temp.innerHTML = data.current.temp.c + "&#176";
+        temp.innerHTML = data.current.temp_c + "&#176";
         conditionOutput.innerHTML = data.current.condition.text;
 
         //date as a string
@@ -86,12 +87,14 @@ function fetchWeatherData(){
         const time = date.substr(11);
 
         dateOutput.innerHTML = `${dayOfTheWeek(d, m, y)} ${d}, ${m} ${y}`;
+        console.log(dayOfTheWeek(d, m, y));
+        timeOutput.innerHTML = time;
 
         //add name as location
         nameOutput.innerHTML = data.location.name;
 
         //now for the icon
-        const iconId = data.current.condition.icon.sunstr("//cdn.weatherapi.com/weather/64x64/".length);
+        const iconId = data.current.condition.icon.substr("//cdn.weatherapi.com/weather/64x64/".length);
         icon.src = "./icons/" + iconId;
 
         //get weather details - wind and all
@@ -111,7 +114,7 @@ function fetchWeatherData(){
         }
 
         if(code == 1000){
-            app.style.backgroundImage = `url(./images/${timeOfDay}/clearInterval.jpg)`
+            app.style.backgroundImage = `url(./images/${timeOfDay}/clear.jpg)`
             //change the button color depending upon the night or day
             btn.style.background = "#e5ba92";
             if(timeOfDay == "night"){
