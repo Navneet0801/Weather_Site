@@ -1,3 +1,4 @@
+"use strict";
 const app = document.querySelector('.weather-app');
 const temp = document.querySelector('.temp');
 const dateOutput = document.querySelector('.date');
@@ -184,8 +185,9 @@ function fetchWeatherData(){
     })
 
     //if user enter a city which is not valid then
-    .catch(() => {
+    .catch((err) => {
         alert("City not found!Please try again");
+        console.log(err);
         app.style.opacity = "1";
     });
 }
